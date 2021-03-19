@@ -36,17 +36,6 @@ router.get('/:id', (req, res) => {
     });
   });
 
-router.post('/', (req, res) => {
-  // create a new category
-  Category.create({
-    tag_name: req.body.category_name
-  })
-  .then(dbCategoryData => res.json (dbCategoryData))
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-});
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
@@ -62,6 +51,18 @@ router.put('/:id', (req, res) => {
   }
   res.json(dbCategoryData);
 })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+router.post('/', (req, res) => {
+  // create a new category
+  Category.create({
+    tag_name: req.body.category_name
+  })
+  .then(dbCategoryData => res.json (dbCategoryData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
